@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.2" width="167.0869141pt" height="242.6669922pt" viewBox="0 0 5894 8561" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:presentation="http://sun.com/xmlns/staroffice/presentation" xmlns:smil="http://www.w3.org/2001/SMIL20/" xmlns:anim="urn:oasis:names:tc:opendocument:xmlns:animation:1.0" xml:space="preserve">
+ <defs class="ClipPathGroup">
+  <clipPath id="presentation_clip_path" clipPathUnits="userSpaceOnUse">
+   <rect x="0" y="0" width="5894" height="8561"/>
+  </clipPath>
+  <clipPath id="presentation_clip_path_shrink" clipPathUnits="userSpaceOnUse">
+   <rect x="5" y="8" width="5883" height="8544"/>
+  </clipPath>
+ </defs>
+ <defs class="TextShapeIndex">
+  <g ooo:slide="id1" ooo:id-list="id3 id4"/>
+ </defs>
+ <defs class="EmbeddedBulletChars">
+  <g id="bullet-char-template-57356" transform="scale(0.00048828125,-0.00048828125)">
+   <path d="M 580,1141 L 1163,571 580,0 -4,571 580,1141 Z"/>
+  </g>
+  <g id="bullet-char-template-57354" transform="scale(0.00048828125,-0.00048828125)">
+   <path d="M 8,1128 L 1137,1128 1137,0 8,0 8,1128 Z"/>
+  </g>
+  <g id="bullet-char-template-10146" transform="scale(0.00048828125,-0.00048828125)">
+   <path d="M 174,0 L 602,739 174,1481 1456,739 174,0 Z M 1358,739 L 309,1346 659,739 1358,739 Z"/>
+  </g>
+  <g id="bullet-char-template-10132" transform="scale(0.00048828125,-0.00048828125)">
+   <path d="M 2015,739 L 1276,0 717,0 1260,543 174,543 174,936 1260,936 717,1481 1274,1481 2015,739 Z"/>
+  </g>
+  <g id="bullet-char-template-10007" transform="scale(0.00048828125,-0.00048828125)">
+   <path d="M 0,-2 C -7,14 -16,27 -25,37 L 356,567 C 262,823 215,952 215,954 215,979 228,992 255,992 264,992 276,990 289,987 310,991 331,999 354,1012 L 381,999 492,748 772,1049 836,1024 860,1049 C 881,1039 901,1025 922,1006 886,937 835,863 770,784 769,783 710,716 594,584 L 774,223 C 774,196 753,168 711,139 L 727,119 C 717,90 699,76 672,76 641,76 570,178 457,381 L 164,-76 C 142,-110 111,-127 72,-127 30,-127 9,-110 8,-76 1,-67 -2,-52 -2,-32 -2,-23 -1,-13 0,-2 Z"/>
+  </g>
+  <g id="bullet-char-template-10004" transform="scale(0.00048828125,-0.00048828125)">
+   <path d="M 285,-33 C 182,-33 111,30 74,156 52,228 41,333 41,471 41,549 55,616 82,672 116,743 169,778 240,778 293,778 328,747 346,684 L 369,508 C 377,444 397,411 428,410 L 1163,1116 C 1174,1127 1196,1133 1229,1133 1271,1133 1292,1118 1292,1087 L 1292,965 C 1292,929 1282,901 1262,881 L 442,47 C 390,-6 338,-33 285,-33 Z"/>
+  </g>
+  <g id="bullet-char-template-9679" transform="scale(0.00048828125,-0.00048828125)">
+   <path d="M 813,0 C 632,0 489,54 383,161 276,268 223,411 223,592 223,773 276,916 383,1023 489,1130 632,1184 813,1184 992,1184 1136,1130 1245,1023 1353,916 1407,772 1407,592 1407,412 1353,268 1245,161 1136,54 992,0 813,0 Z"/>
+  </g>
+  <g id="bullet-char-template-8226" transform="scale(0.00048828125,-0.00048828125)">
+   <path d="M 346,457 C 273,457 209,483 155,535 101,586 74,649 74,723 74,796 101,859 155,911 209,963 273,989 346,989 419,989 480,963 531,910 582,859 608,796 608,723 608,648 583,586 532,535 482,483 420,457 346,457 Z"/>
+  </g>
+  <g id="bullet-char-template-8211" transform="scale(0.00048828125,-0.00048828125)">
+   <path d="M -4,459 L 1135,459 1135,606 -4,606 -4,459 Z"/>
+  </g>
+  <g id="bullet-char-template-61548" transform="scale(0.00048828125,-0.00048828125)">
+   <path d="M 173,740 C 173,903 231,1043 346,1159 462,1274 601,1332 765,1332 928,1332 1067,1274 1183,1159 1299,1043 1357,903 1357,740 1357,577 1299,437 1183,322 1067,206 928,148 765,148 601,148 462,206 346,322 231,437 173,577 173,740 Z"/>
+  </g>
+ </defs>
+ <g>
+  <g id="id2" class="Master_Slide">
+   <g id="bg-id2" class="Background"/>
+   <g id="bo-id2" class="BackgroundObjects"/>
+  </g>
+ </g>
+ <g class="SlideGroup">
+  <g>
+   <g id="container-id1">
+    <g id="id1" class="Slide" clip-path="url(#presentation_clip_path)">
+     <g class="Page">
+      <g class="Graphic">
+       <g id="id3">
+        <rect class="BoundingBox" stroke="none" fill="none" x="0" y="0" width="5894" height="8561"/>
+        <defs>
+         <clipPath id="clip_path_1" clipPathUnits="userSpaceOnUse">
+          <path d="M 0,0 L 5893,0 5893,8560 0,8560 0,0 Z"/>
+         </clipPath>
+        </defs>
+        <g clip-path="url(#clip_path_1)">
+         <path fill="rgb(200,200,233)" stroke="none" stroke-width="18" stroke-linejoin="miter" d="M 5884,8309 C 5884,8442 5775,8551 5642,8551 L 251,8551 C 118,8551 9,8442 9,8309 L 9,251 C 9,118 118,9 251,9 L 5642,9 C 5775,9 5884,118 5884,251 L 5884,8309 5884,8309 Z"/>
+        </g>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.CustomShape">
+       <g id="id4">
+        <rect class="BoundingBox" stroke="none" fill="none" x="301" y="300" width="5293" height="7960"/>
+        <path fill="rgb(244,244,255)" stroke="none" d="M 2947,8153 L 407,8153 407,406 5487,406 5487,8153 2947,8153 Z"/>
+        <g>
+         <defs>
+          <pattern id="pattern1" x="407" y="406" width="5081" height="7748" patternUnits="userSpaceOnUse">
+           <g transform="translate(-407,-406)">
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="586" x2="587" y2="406"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="998" x2="999" y2="406"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="1410" x2="1411" y2="406"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="1822" x2="1823" y2="406"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="2234" x2="2235" y2="406"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="2646" x2="2647" y2="406"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="3058" x2="3059" y2="406"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="3470" x2="3471" y2="406"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="3882" x2="3883" y2="406"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="4294" x2="4295" y2="406"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="4706" x2="4707" y2="406"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="5118" x2="5119" y2="406"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="5530" x2="5487" y2="450"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="5942" x2="5487" y2="862"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="6354" x2="5487" y2="1274"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="6766" x2="5487" y2="1686"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="7178" x2="5487" y2="2098"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="7590" x2="5487" y2="2510"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="8002" x2="5487" y2="2922"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="668" y1="8153" x2="5487" y2="3334"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="1080" y1="8153" x2="5487" y2="3746"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="1492" y1="8153" x2="5487" y2="4158"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="1904" y1="8153" x2="5487" y2="4570"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="2316" y1="8153" x2="5487" y2="4982"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="2728" y1="8153" x2="5487" y2="5394"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="3140" y1="8153" x2="5487" y2="5806"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="3552" y1="8153" x2="5487" y2="6218"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="3964" y1="8153" x2="5487" y2="6630"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="4376" y1="8153" x2="5487" y2="7042"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="4788" y1="8153" x2="5487" y2="7454"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="5200" y1="8153" x2="5487" y2="7866"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="5351" y1="406" x2="5487" y2="542"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="4939" y1="406" x2="5487" y2="954"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="4527" y1="406" x2="5487" y2="1366"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="4115" y1="406" x2="5487" y2="1778"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="3703" y1="406" x2="5487" y2="2190"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="3291" y1="406" x2="5487" y2="2602"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="2879" y1="406" x2="5487" y2="3014"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="2467" y1="406" x2="5487" y2="3426"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="2055" y1="406" x2="5487" y2="3838"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="1643" y1="406" x2="5487" y2="4250"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="1231" y1="406" x2="5487" y2="4662"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="819" y1="406" x2="5487" y2="5074"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="406" x2="5487" y2="5486"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="818" x2="5487" y2="5898"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="1230" x2="5487" y2="6310"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="1642" x2="5487" y2="6722"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="2054" x2="5487" y2="7134"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="2466" x2="5487" y2="7546"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="2878" x2="5487" y2="7958"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="3290" x2="5270" y2="8153"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="3702" x2="4858" y2="8153"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="4114" x2="4446" y2="8153"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="4526" x2="4034" y2="8153"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="4938" x2="3622" y2="8153"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="5350" x2="3210" y2="8153"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="5762" x2="2798" y2="8153"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="6174" x2="2386" y2="8153"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="6586" x2="1974" y2="8153"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="6998" x2="1562" y2="8153"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="7410" x2="1150" y2="8153"/>
+            <line stroke="rgb(53,82,105)" stroke-width="50pt" x1="407" y1="7822" x2="738" y2="8153"/>
+           </g>
+          </pattern>
+         </defs>
+         <path style="fill:url(#pattern1)" d="M 2947,8153 L 407,8153 407,406 5487,406 5487,8153 2947,8153 Z"/>
+        </g>
+        <path fill="none" stroke="rgb(66,66,144)" stroke-width="200" stroke-linejoin="round" d="M 2947,8153 L 407,8153 407,406 5487,406 5487,8153 2947,8153 Z"/>
+       </g>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>
