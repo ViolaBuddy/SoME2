@@ -8,22 +8,28 @@
 <body>
 <div id="cardDeck"></div>
 <script type="text/javascript">
+	"use strict";
 	let CARD_WIDTH = 10; // must match cardgamestyle.css
 	let CARD_HEIGHT = CARD_WIDTH * 323.55 / 222.783;
 	let CLOCK_RADIUS = 50 - CARD_HEIGHT
+	let WASTE_PILE_X = 99 - CARD_WIDTH;
+	let WASTE_PILE_Y = 99 - CARD_HEIGHT;
 
+	var numClicks = 0;
+	var lastClickedNumericalRank = null;
 	let fullDeck = createDeck();
 	fullDeck.shuffle();
+
 	for (let i = 0; i < fullDeck.cards.length; i++) {
+		// create the card
 		let card = fullDeck.cards[i];
 		card.addImageTo(document.getElementById('cardDeck'));
 		card.flip(); //face down
 
+		// arrange the DOM element visually on the page
 		let pileNumber = i%13;
 		let offset = Math.floor(i/13)/2;
-
 		let x, y;
-
 		if(i%13 == 0) {
 			// king cards in the center
 			x = 44 - CARD_WIDTH/2 + offset;
@@ -33,12 +39,26 @@
 			x = 44 + CLOCK_RADIUS * Math.sin(2*Math.PI * (i%13)/12) - CARD_WIDTH/2 + offset;
 			y = 44 + CLOCK_RADIUS * -Math.cos(2*Math.PI * (i%13)/12) - CARD_WIDTH/2 + offset;
 		}
-
 		card.domElement.style['left'] = x + '%';
 		card.domElement.style['top'] = y + '%';
-	}
 
-	fullDeck.cards[52 - 13].flip()
+		card.changeClickFnc(function(clickevent){
+			// Note: Javascript scoping rules of `let` preserve the value of i for each card
+			if(lastClickedNumericalRank === i%13 || lastClickedNumericalRank === null) {
+				if(!this.faceUp) {
+					this.flip();
+					this.moveImageTo(WASTE_PILE_X, WASTE_PILE_Y);
+					this.domElement.style['zIndex'] = 1000 + numClicks;
+
+					numClicks+=1;
+					lastClickedNumericalRank = getNumericalRank(this.rank)%13;
+				}
+			}
+		});
+	}
+	this.onload = function(){
+		fullDeck.cards[52 - 13].domElement.onclick();
+	}
 </script>
 </body>
 </html>

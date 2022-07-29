@@ -10,12 +10,47 @@ function createEnum(values) {
 const Suit = createEnum(['Diamonds', 'Clubs', 'Hearts', 'Spades']);
 const Rank = createEnum(['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']);
 
+/** returns an integer representation of the rank */
+function getNumericalRank(rank){
+	switch(rank){
+		case Rank.Ace:
+			return 1;
+		case Rank.Two:
+			return 2;
+		case Rank.Three:
+			return 3;
+		case Rank.Four:
+			return 4;
+		case Rank.Five:
+			return 5;
+		case Rank.Six:
+			return 6;
+		case Rank.Seven:
+			return 7;
+		case Rank.Eight:
+			return 8;
+		case Rank.Nine:
+			return 9;
+		case Rank.Ten:
+			return 10;
+		case Rank.Jack:
+			return 11;
+		case Rank.Queen:
+			return 12;
+		case Rank.King:
+			return 13;
+		default:
+			return null;
+	}
+}
+
 /** a representation of a card, along with a visualization of it */
 class Card {
 	static IMAGE_DIRECTORY = 'img';
 	static FACEDOWN_IMAGE_PATH = Card.IMAGE_DIRECTORY + '/' + 'card_back_v2.svg';
 
-	constructor(suit, rank, onclick=null){
+	/** Note that clickFnc will have `this` be bound to the Card object */
+	constructor(suit, rank, clickFnc=null){
 		this.suit = suit;
 		this.rank = rank;
 		this.faceUp = true;
@@ -33,11 +68,23 @@ class Card {
 		this.domElement.classList.add("playing-card");
 		let thisThis = this;
 
-		this.domElement.onclick = onclick;
+		if(clickFnc != null){
+			this.domElement.onclick = clickFnc.bind(this);
+		}
 	}
 
-	changeOnclick(onclick=null){
-		this.domElement.onclick = onclick;
+	/** Note that clickFnc will have `this` be bound to the Card object */
+	changeClickFnc(clickFnc=null){
+		if(clickFnc != null){
+			this.domElement.onclick = clickFnc.bind(this);
+		} else{
+			this.domElement.onclick = null;
+		}
+	}
+
+	moveImageTo(destX, destY){
+		this.domElement.style['left'] = destX + '%';
+		this.domElement.style['top'] = destY + '%';
 	}
 
 	/** add this Card's visual element to the div provided in the argument */
@@ -63,40 +110,6 @@ class Card {
 		return this.rank + " of " + this.suit;
 	}
 
-	/** returns an integer representation of the rank */
-	getNumericalRank(){
-		switch(this.rank){
-			case Rank.Ace:
-				return 1;
-			case Rank.Two:
-				return 2;
-			case Rank.Three:
-				return 3;
-			case Rank.Four:
-				return 4;
-			case Rank.Five:
-				return 5;
-			case Rank.Six:
-				return 6;
-			case Rank.Seven:
-				return 7;
-			case Rank.Eight:
-				return 8;
-			case Rank.Nine:
-				return 9;
-			case Rank.Ten:
-				return 10;
-			case Rank.Jack:
-				return 11;
-			case Rank.Queen:
-				return 12;
-			case Rank.King:
-				return 13;
-			default:
-				return null;
-		}
-	}
-
 	/** returns a string representing the path to the svg image */
 	getImagePath() {
 		let suitName = this.suit.toLowerCase();
@@ -112,7 +125,7 @@ class Card {
 			case Rank.Eight:
 			case Rank.Nine:
 			case Rank.Ten:
-				rankName = this.getNumericalRank().toString();
+				rankName = getNumericalRank(this.rank).toString();
 				break;
 			case Rank.Jack:
 			case Rank.Queen:
@@ -202,11 +215,11 @@ class Hand extends Deck{
 	}
 }
 
-function createDeck(){
+function createDeck(clickFnc=null){
 	let deck = [];
 	for (const suit in Suit) {
 		for (const rank in Rank) {
-			deck.push(new Card(suit, rank));
+			deck.push(new Card(suit, rank, clickFnc));
 		}
 	}
 	return new Deck(deck);

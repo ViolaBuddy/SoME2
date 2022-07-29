@@ -1,5 +1,6 @@
 div.playing-card {
 	position: absolute;
+	transition: top 0.5s, left 0.5s;
 }
 
 div.playing-card img {
