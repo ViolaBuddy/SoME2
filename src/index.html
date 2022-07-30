@@ -11,20 +11,39 @@
 			border: 1px solid gray;
 			position: relative;
 		}
+
+		p {
+			font-size: 16pt;
+			line-height: 24pt;
+			font-family: sans-serif;
+			max-width: 1200px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 24pt;
+			margin-bottom: 24pt;
+		}
 	</style>
 	<link rel="stylesheet" type="text/css" href="cardgamestyle.css">
     <script type="text/javascript" src="PlayingCards.js"></script>
 </head>
 <body>
 <h1>Playing Cards Demo</h1>
-	<p>Here's Clock Solitaire</p>
+	<p>Here is a simple solitaire game for a standard 52-card deck. Arrange your cards in twelve piles of four in a circle, like the twelve numbers on a clockface. Put the final pile of four in the center; this represents the clock striking thirteen.</p>
+	<p>Start from this central pile, flipping over a card and moving it to a waste pile. Then do the same thing from the pile in the position indicated by the face value of that card. For example, if your first card is a 2, your next move would be to remove a card from the pile in the 2 o'clock position. Aces are 1 o'clock, Jacks are 11 o'clock, Queens are 12 o'clock, and Kings are the 13 o'clock pile in the center. Your goal is to move all the cards into the waste pile&mdash;but if a card points you to a pile that's already empty, that's game over!</p>
+	<p>Try this out for yourself. Click on a facedown card in the right pile to move it to the waste.</p>
 	<iframe src="basicgame.html" title="Clock Solitaire" id="cardDeck"></iframe> 
 
-	<p>Or if you're tired of clicking, this one automates it for you.</p>
-	<iframe src="autogame.html" title="Clock Solitaire" id="cardDeck"></iframe> 
+	<p>Obviously, this solitaire has absolutely no strategy involved whatsoever. There is only one card you can flip over at any point in time. Really, if anything, it's a quiz on how well you remember the positions on a clock&mdash;something that many of us are out of practice with due to the prevalence of digital clocks today. But if you ever get a chance to play this game with a physical deck of cards, there's something almost meditative about the way it feels to keep moving cards without needing to think about strategy.</p>
+	<p>Regardless, this does make it a bit easier to analyze mathematically&mdash;it's purely a game of chance. And because there's no choice involved, we can automate the gameplay. If you're tired of clicking, try this one:</p>
+	<iframe src="autogame.html" title="Clock Solitaire (Auto)" id="cardDeck"></iframe> 
+
+	<p>There are a couple things that become readily apparent if you play through a couple of games. The first is that it's unlikely to win. In the vast majority of cases, you'll get stuck. The second observation is that when you get stuck, it's always because of a king, pointing at an empty 13 o'clock pile. And in fact, even when you win, the last card will also always be a king.</p>
+
+	<p>Let's think about the latter point first. Why is it that we always get stuck at a king? Or phrased another way, why is it that we never get stuck at any other card?</p>
 
     <hr/>
 	<h1>Acknowledgements</h1>
-	<p>Written in HTML/Javascript by Viola Buddy. Public domain playing card vector images by Byron Knoll (card backs are by Viola Buddy).</p>
+	<p>This explorable was created in HTML/Javascript by Viola Buddy for the Summer of Math Exposition 2 (SoME2), an event organized by the YouTube channel 3Blue1Brown to encourage people to create explanations of math or math-related subjects in any online medium. Public domain playing card vector images by Byron Knoll (card backs are by Viola Buddy).</p>
+	<p>Clock solitaire itself is a traditional card game with no clear inventor; <a href="https://en.wikipedia.org/wiki/Clock_(card_game)">here</a> is its Wikipedia page. Note that traditionally, instead of moving cards to a waste pile, you place them under their respective pile, face up, but they are never moved again. I thought that would be a bit messy to show here, and a bit of a distraction, so I opted to throw them into a waste pile instead (and that's what I do when playing this game in real life with physical cards, since it eliminates the need for thoroughly reshuffling them after the game is donee).</p>
 </body>
 </html>

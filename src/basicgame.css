@@ -25,4 +25,10 @@
 	font-variant: small-caps;
 }
 
-# auto
+#autospeeddiv{
+	float: right;
+}
+
+#autospeedrange{
+	width: 25vw;
+}

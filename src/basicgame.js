@@ -45,6 +45,7 @@ function setupGame() {
 function startGame(){
 	for (let i = 0; i < fullDeck.cards.length; i++) {
 		let card = fullDeck.cards[i];
+		card.domElement.style['cursor'] = 'pointer';
 
 		// add click to all the cards
 		card.changeClickFnc(function(clickevent){
@@ -54,6 +55,7 @@ function startGame(){
 					this.flip();
 					this.moveImageTo(WASTE_PILE_X, WASTE_PILE_Y);
 					this.domElement.style['zIndex'] = 1000 + numClicks;
+					this.domElement.style['cursor'] = 'auto';
 
 					numClicks++;
 					lastClickedNumericalRank = getNumericalRank(this.rank)%13;
