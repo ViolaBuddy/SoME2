@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Basic Clock Solitaire (Auto)</title>
+	<link rel="stylesheet" type="text/css" href="basicgame.css">
+	<link rel="stylesheet" type="text/css" href="cardgamestyle.css">
+	<script type="text/javascript" src="PlayingCards.js"></script>
+	<script type="text/javascript" src="basicgame.js"></script>
+</head>
+<body>
+<div id="main">
+	<button type="button" id="againbutton">Start over</button>
+	<input type="range" min="1" max="50" value="2" step="0.2" class="slider" id="autospeedrange">
+</div>
+<div id="alertOverlay">▶ Click To Start</div>
+<script type="text/javascript">
+	setupGame();
+	document.getElementById('alertOverlay').onclick = function(clickevent){
+		startAutoGame();
+		document.getElementById('alertOverlay').style['display'] = 'none';
+
+		document.getElementById('againbutton').onclick = function(clickevent){
+			setupGame();
+			// start after a very small delay
+			setTimeout(() => startAutoGame(), 10);
+		}
+	}
+	document.getElementById('autospeedrange').oninput = function(clickevent){
+		timeoutLength = 1000 / document.getElementById('autospeedrange').value;
+	}
+</script>
+</body>
+</html>

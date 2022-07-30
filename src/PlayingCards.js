@@ -93,7 +93,11 @@ class Card {
 	}
 
 	/** flip this card faceUp/faceDown */
-	flip() {
+	flip(newFaceUp=null) {
+		if(newFaceUp===this.faceUp) {
+			return;
+			// nothing to be done if we're already in the desired state
+		}
 		if(this.faceUp){
 			this.domElement.removeChild(this.faceUpImg);
 			this.domElement.appendChild(this.faceDownImg);
