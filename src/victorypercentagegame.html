@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clock Solitaire (Victory Percentage)</title>
+	<link rel="stylesheet" type="text/css" href="basicgame.css">
+	<script type="text/javascript" src="PlayingCards.js"></script>
+	<script type="text/javascript" src="basicgame.js"></script>
+</head>
+<body>
+<div id="wrapper">
+	<div id="main">
+	</div>
+	<div id="graphs">
+		Autoplay:
+		<ul id="againbuttonslist">
+			<li><button type="button" id="againbutton">1&times;</button></li>
+			<li><button type="button" id="again5button">5&times;</button></li>
+			<li><button type="button" id="again20button">20&times; (not animated)</button></li>
+			<li><button type="button" id="again100button">100&times; (not animated)</button></li>
+		</ul>
+		<div id="victorystatslist">
+			<p>Victories: <span id="stats_victories">0</span>/<span id="stats_total">0</span></p>
+			<p>Win rate: <span id="stats_rate">--</span>%</p>
+		</div>
+	</div>
+</div>
+
+<div id="alertOverlay">▶ Click To Start</div>
+<script type="text/javascript">
+	setupGame();
+	timeoutLength = 10;
+	let resultsDivs = {
+		"numVictories": document.getElementById("stats_victories"),
+		"numGames": document.getElementById("stats_total"),
+		"victoryRatio": document.getElementById("stats_rate")
+	};
+
+	document.getElementById('alertOverlay').onclick = function(clickevent){
+		document.getElementById('alertOverlay').style['display'] = 'none';
+
+		document.getElementById('againbutton').onclick = function(clickevent){
+			if(!gameIsRunning)
+				setupAndStartMultiAutoGame(1, true, resultsDivs);
+		}
+		document.getElementById('again5button').onclick = function(clickevent){
+			if(!gameIsRunning)
+				setupAndStartMultiAutoGame(5, true, resultsDivs);
+		}
+		document.getElementById('again20button').onclick = function(clickevent){
+			if(!gameIsRunning)
+				setupAndStartMultiAutoGame(20, false, resultsDivs);
+		}
+		document.getElementById('again100button').onclick = function(clickevent){
+			if(!gameIsRunning)
+				setupAndStartMultiAutoGame(100, false, resultsDivs);
+		}
+	}
+
+	for(let a of document.getElementsByClassName('playing-card')){
+		a.style['transition'] = 'top 0.2s, left 0.2s';
+	}
+</script>
+</body>
+</html>

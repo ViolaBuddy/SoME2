@@ -1,49 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Playing Cards Demo</title>
-	<style type="text/css">
-		#cardDeck, #cardHand {
-			display: block;
-			width: 600px;
-			height: 600px;
-			margin: auto;
-			border: 1px solid gray;
-			position: relative;
-		}
-
-		p {
-			font-size: 16pt;
-			line-height: 24pt;
-			font-family: sans-serif;
-			max-width: 1200px;
-			margin-left: auto;
-			margin-right: auto;
-			margin-top: 24pt;
-			margin-bottom: 24pt;
-		}
-	</style>
-	<link rel="stylesheet" type="text/css" href="cardgamestyle.css">
+	<title>Clock Solitaire</title>
+	<link rel="stylesheet" type="text/css" href="indexstyle.css">
     <script type="text/javascript" src="PlayingCards.js"></script>
 </head>
 <body>
-<h1>Playing Cards Demo</h1>
-	<p>Here is a simple solitaire game for a standard 52-card deck. Arrange your cards in twelve piles of four in a circle, like the twelve numbers on a clockface. Put the final pile of four in the center; this represents the clock striking thirteen.</p>
-	<p>Start from this central pile, flipping over a card and moving it to a waste pile. Then do the same thing from the pile in the position indicated by the face value of that card. For example, if your first card is a 2, your next move would be to remove a card from the pile in the 2 o'clock position. Aces are 1 o'clock, Jacks are 11 o'clock, Queens are 12 o'clock, and Kings are the 13 o'clock pile in the center. Your goal is to move all the cards into the waste pile&mdash;but if a card points you to a pile that's already empty, that's game over!</p>
-	<p>Try this out for yourself. Click on a facedown card in the right pile to move it to the waste.</p>
-	<iframe src="basicgame.html" title="Clock Solitaire" id="cardDeck"></iframe> 
+<h1>Clock Solitaire</h1>
+<div class="content">
+	<h2>The Game</h2>
+	<p>This is Clock Solitaire, a solitaire game played with a standard 52-card deck.</p>
+	<details>
+		<summary>Rules (click to reveal)</summary>
+		<p><strong>Setup:</strong> Arrange your cards in twelve piles of four in a circle, like the twelve numbers on a clock face. Put the final pile of four in the center; this represents the clock striking 13.</p>
+		<p><strong>Gameplay:</strong> A move in this game consists of taking a card from a pile on the clock and putting it face-up in the waste pile. Your first move is from the central 13 o'clock pile.</p>
+		<p>After that, each subsequent move is from the pile indicated by the value of the card you just flipped over in the waste pile in the previous move. For example, if the first card is a Two, your next move would be from the pile in the 2 o'clock position. Aces are 1 o'clock, Jacks are 11 o'clock, Queens are 12 o'clock, and Kings are the 13 o'clock pile in the center.</p>
+		<p>In this digital version, to make a move, click on a facedown card in the right pile to move it to the waste.</p>
+		<p><strong>Victory and loss conditions:</strong> Your goal is to move all the cards into the waste pile&mdash;but if a card points you to a pile that's already empty, that's game over!</p>
+	</details>
+	<iframe src="basicgame.html" title="Clock Solitaire" id="basicgame" class="gameiframe"></iframe>
+	<p>If you're just here for the game and not the math that describes the game&hellip; well, that's it; there's not much more here for you. A not-very-exciting game with no strategy on the part of the player. If anything, it's a quiz on how well you remember the positions on a clock&mdash;something that many of us are out of practice with due to the prevalence of digital clocks today.</p>
+	<p>It's actually a bit more engaging if you ever get a chance to play it with a physical deck of cards. There's still no strategy or choice, of course, but there's something calming and almost meditative about methodically moving cards one by one without needing to think about strategy.</p>
+	<p>But if you're ready to dive into just a little bit of the math, carry on!</p>
+</div>
 
-	<p>Obviously, this solitaire has absolutely no strategy involved whatsoever. There is only one card you can flip over at any point in time. Really, if anything, it's a quiz on how well you remember the positions on a clock&mdash;something that many of us are out of practice with due to the prevalence of digital clocks today. But if you ever get a chance to play this game with a physical deck of cards, there's something almost meditative about the way it feels to keep moving cards without needing to think about strategy.</p>
-	<p>Regardless, this does make it a bit easier to analyze mathematically&mdash;it's purely a game of chance. And because there's no choice involved, we can automate the gameplay. If you're tired of clicking, try this one:</p>
-	<iframe src="autogame.html" title="Clock Solitaire (Auto)" id="cardDeck"></iframe> 
+<div class="content">
+	<h2>Great, So What Math-y Things Are We Talking About?</h2>
+	<p>Before we start asking questions about the game, it'd be good to just play it a few times to make observations about it. But you're probably getting tired of hunting and clicking.</p>
+	<p>But fortunately, as I said, this game involves absolutely no choice whatsoever. There is only one card you can flip over at any point in time. That means it's easy to automate! So if you're tired of clicking, try this one:</p>
+	<iframe src="autogame.html" title="Clock Solitaire (Auto)" id="autogame" class="gameiframe"></iframe> 
 
-	<p>There are a couple things that become readily apparent if you play through a couple of games. The first is that it's unlikely to win. In the vast majority of cases, you'll get stuck. The second observation is that when you get stuck, it's always because of a king, pointing at an empty 13 o'clock pile. And in fact, even when you win, the last card will also always be a king.</p>
+	<p>There are a couple things that jump out after playing through a couple of games, at least for me:</p>
+	<ol>
+		<li>When we get stuck, it always seems to be because of a King pointing at an empty 13 o'clock pile, never any of the other piles.</li>
+		<li>It's actually very unlikely to win. In the vast majority of cases, you'll get stuck somewhere or other. Depending on your luck, maybe you haven't even seen a winning game at all.</li>
+	</ol>
+	<p>So these directly lead to the two questions I'm going to explore here: (1) Why is it always the Kings that give us trouble?, and (2) What's the probability of winning?</p>
+	<p>Perhaps other questions come to mind for you. I'd certainly encourage you to continue thinking about them after you read through the rest of this, but for now, let's look at these two questions.</p>
+</div>
 
-	<p>Let's think about the latter point first. Why is it that we always get stuck at a king? Or phrased another way, why is it that we never get stuck at any other card?</p>
+<div class="content">
+	<h2>The Four Troublesome Kings</h2>
+	<figure class="floatright">
+		<img src="img/Seven_with_empty_pile.png" alt="a game with an empty 7 o'clock pile and a 7 on the top of the face-up waste pile" width="300px">
+		<figcaption>How might we get into this situation? (Spoilers: we can't.)</figcaption>
+	</figure>
+	<p>So. Why is it that we always get stuck at a King?</p>
+	<p>Actually, what might be helpful as our first step is to frame this question another way: why is it that we never get stuck at any other card?</p>
+	<p>Well, how would we get stuck on, say, the 7 o'clock pile? By the rules of the game, this happens in something like the situation pictured on the right: when there's a Seven on the top of the waste pile, but the 7 o'clock pile is already empty&mdash;that is, we've previously already removed all four cards from the 7 o'clock pile.</p>
+	<p>So then we ask: how did we remove all four of those cards? And the answer, of course, is that we remove a card from the 7 o'clock pile every time we moved a Seven into the waste pile. So if we removed four cards from the 7 o'clock pile, that means we previously drew four Sevens.</p>
+	<p>But wait, if we previously already drew all four Sevens, how do we have another Seven in the waste pile now? And here lies the impossibility: we can't be in this situation at all, because for the pile to be empty, we would have to have drawn all four Sevens, but that would mean there are no more Sevens left to point at the empty pile.</p>
+	<p>There's nothing special about Seven, of course; this logic is true for all twelve of the clock face number piles. We will never get stuck on an Ace, or a Five, or a Ten. But the Kings and the 13 o'clock pile is different. Do you see why?</p>
+	<p>Well, we start the game with a move from the 13 o'clock pile, even though we haven't seen a King yet&mdash;we get one move from that pile for free. This means that once the pile is empty, we'll only have seen three Kings. The fourth King, once it's removed from the clock face, will point us back to the empty pile, and we get stuck. So a King can get us stuck, while no other card can.</p>
+	<p>Mini exercise to check your understanding: if we wanted to play this with a 54-card deck, adding in the two Jokers as a 14 o'clock, how would we modify the setup?</p>
+	<details>
+		<summary>Answer (click to reveal)</summary>
+		Add an additional 14 o'clock pile in your setup (maybe next to the 13 o'clock pile in the center of the clockface), with only two cards in it. The first move could be from the 13 o'clock pile or the 14 o'clock pile; it doesn't really matter. But everything else works identically.
+	</details>
+	<p>Even though this proof is fairly simple and straightforward, this fact is not obvious until you go through this, at least for me. I mean, once you play at least a game or two and see that it's a King in those games, you would have suspicions that it would always end with a King. But it's still not really obvious <em>why</em> until you actually go through a proof like this.</p>
+</div>
 
-    <hr/>
-	<h1>Acknowledgements</h1>
+<div class="content">
+	<h2>Onward to Victory (with Some Small Probability)</h2>
+	<p>So now that that's resolved, let's look at our second question: what's the probability of winning?</p>
+	<p>Well, why don't we try the same thing we did last time, and do a thought experiment about what the game state is like? The last time we were thinking about how we lost, but now, let's think about the game situation when we win. What does it look like to win?</p>
+	<p>The game rules state that we win when we remove the last card from the clock face and put it in our waste pile, but actually it might be easier to think about winning a different way: we win if we never lose. If we never lose, but we keep playing a card every turn, then after 52 turns of not losing, we'll have won.</p>
+	<p>We concluded in the last section that our only loss condition is seeing the fourth and final King. So if we haven't lost by turn 52, then we did not yet see the fourth King before this final card. Or in other words, if we win, the final card must be a King.</p>
+	<p>That's on one hand kind of obvious, especially after the logic we did in the last section. But on the other hand, it's a little surprising: the winning condition really boils down to "Is the final card a King?" and nothing else. All the stuff in between, all that moving around cards, none of it matters. All that matters is the final card. And of course, the probability that any random card in a shuffled deck is a King is simply 1/13, or about 7.7%, and so our probability of winning a game of Clock Solitaire is that same number.</p>
+	<p>Take a moment to think about this argument for a moment. If you're like me, there is one part of this argument that still feels a bit handwavy. Are we sure that the last card we see is actually a randomly shuffled card? After all, we're doing all this back and forth clock manœuvering; maybe this changes the probability of the last card we're going to see. That's how the Monty Hall Problem works.</p>
+	<p>We can solve this in two ways. The proper way is to do some further arguments and logic. But the other, more fun way is to just simulate it and see if the results match our predictions. And I've subjected you to enough paragraphs of plain text, so let's go down the simulation route.</p>
+	<iframe src="victorypercentagegame.html" title="Clock Solitaire, with percentage" id="victorypercentagegame" class="gameiframe"></iframe>
+	<p>Okay, great, we have an experimental number. But, uh&hellip; so now what? Did we prove this right or wrong? This is a simulation, so I have no idea what number you have. It's probably close. Or it might not be. How do we tell?</p>
+</div>
+
+<div class="content">
+	<h2>Experimental Rates</h2>
+</div>
+
+<div class="content">
+	<h2>To Go Even Further Beyond</h2>
+	<p>There are of course many more questions we can ask about this game. I don't have time to go into all of them, of course, but I'll leave you with some of the questions, at least, for you to think about on your own time&mdash;and I'm sure you can think of more questions for yourself.</p>
+	<ul>
+		<li><strong>Counting remaining cards:</strong> Rather than asking the simple "how often do we win?" yes-or-no question, we can also consider the number of cards remaining on the clock face if we lose. Then, instead of a single probability, we would then be dealing with a probability <em>distribution</em>, i.e. a whole string of probabilities: the probability of 0 cards remaining (i.e. winning), the probability of having 1 card remaining, the probability of having 2 cards remaining, all the way up to the probability of 52 cards remaining. What does this distribution look like? How would you determine it experimentally? It's actually pretty simple to reason out that it's impossible to have all 52 cards remaining&mdash;the first card you flip over from the 13 o'clock pile will always be possible.</li>
+		<li><strong>Reintroducing choice:</strong> As we've already established, this is a game that is purely deterministic, but we can actually make it so that the player has some agency and strategy. Now, each of the thirteen piles is made of four upturned cards, rather than facedown ones, and making a move from a pile means choosing <em>any</em> card from the pile, not necessarily the top one. What would be a good strategy? Are all games winnable? What about if you try to remove the least number of cards from the clock face, instead of the most; what kinds of strategies would work best there? (Incidentally, I often like playing other solitaire card games face-up instead of face-down, because then I can look and plan ahead, so I can actually strategize more effectively.)</li>
+		<li><strong>The 100 Prisoners Puzzle:</strong> If you've heard of the 100 Prisoners Puzzle, you may have found some similarities between this and the solution to that puzzle. If you you follow math edutainment YouTube (and if you're finding this from SoME2, you probably are), you may have seen some similarities between this game and the solution to the 100 Prisoners Puzzle, most recently covered by <a href="https://www.youtube.com/watch?v=iSNsgj1OCLA">Veritasium</a> but also previously covered by <a href="https://www.youtube.com/watch?v=a1DUUnhk3uE">Stand-up Maths</a> and <a href="https://www.youtube.com/watch?v=eivGlBKlK6M">MinutePhysics</a>. TODO</li>
+	</ul>
+</div>
+
+<hr/>
+<h1>Acknowledgements</h1>
+<div class="content">
 	<p>This explorable was created in HTML/Javascript by Viola Buddy for the Summer of Math Exposition 2 (SoME2), an event organized by the YouTube channel 3Blue1Brown to encourage people to create explanations of math or math-related subjects in any online medium. Public domain playing card vector images by Byron Knoll (card backs are by Viola Buddy).</p>
-	<p>Clock solitaire itself is a traditional card game with no clear inventor; <a href="https://en.wikipedia.org/wiki/Clock_(card_game)">here</a> is its Wikipedia page. Note that traditionally, instead of moving cards to a waste pile, you place them under their respective pile, face up, but they are never moved again. I thought that would be a bit messy to show here, and a bit of a distraction, so I opted to throw them into a waste pile instead (and that's what I do when playing this game in real life with physical cards, since it eliminates the need for thoroughly reshuffling them after the game is donee).</p>
+	<p>Clock solitaire itself is a traditional card game with no clear inventor; <a href="https://en.wikipedia.org/wiki/Clock_(card_game)">here</a> is its Wikipedia page. Note that traditionally, instead of moving cards to a waste pile, you place them under their respective pile, face up, but they are never moved again. I thought that would be a bit messy to show here, and a bit of a distraction, so I opted to throw them into a waste pile instead (and that's what I do when playing this game in real life with physical cards, since it eliminates the need for thoroughly reshuffling them after the game is done).</p>
+</div>
+
 </body>
 </html>

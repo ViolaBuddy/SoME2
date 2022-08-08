@@ -10,12 +10,16 @@ var numClicks = 0;
 var lastClickedNumericalRank = 0; // if 13, is stored as 0 instead
 var fullDeck = createDeck();
 var currGameNumber = -1;
+var numVictories = 0;
+var numLosses = 0;
+var gameIsRunning = false;
 
 function setupGame() {
 	fullDeck.shuffle();
 	numClicks = 0;
 	lastClickedNumericalRank = 0;
 	currGameNumber++;
+	gameIsRunning = false;
 
 	for (let i = 0; i < fullDeck.cards.length; i++) {
 		// create the card image
@@ -67,18 +71,25 @@ function startGame(){
 	fullDeck.cards[52 - 13].domElement.onclick();
 }
 
-function startAutoGame(){
+/** endfunction = once the game is over, what function should we run? */
+function startAutoGame(endfunction=null, animate=true){
+	gameIsRunning = true;
 	for (let i = 0; i < fullDeck.cards.length; i++) {
 		let card = fullDeck.cards[i];
 
-		// add a custom property to the cards
+		// add custom properties to the cards
+		// 
+		card.used = false;
 		/** returns true if this move is possible, false otherwise */
 		card.autoClickFunction = function(){
 			// no checks when run automatically
-			if(!this.faceUp) {
-				this.flip();
-				this.moveImageTo(WASTE_PILE_X, WASTE_PILE_Y);
-				this.domElement.style['zIndex'] = 1000 + numClicks;
+			if(!this.used) {
+				this.used = true;
+				if(animate){
+					this.flip();
+					this.moveImageTo(WASTE_PILE_X, WASTE_PILE_Y);
+					this.domElement.style['zIndex'] = 1000 + numClicks;
+				}
 
 				numClicks++;
 				lastClickedNumericalRank = getNumericalRank(this.rank)%13;
@@ -103,17 +114,76 @@ function startAutoGame(){
 				break;
 			}
 		}
-		// if we could successfully find a card to move
 		if(tryMove){
+			// if we could successfully find a card to move
 			if(currGameNumber > thisGameNumber){
-				// oh wait our game has already ended. Don't continue this loop.
+				// Oh wait, our game has already ended through an external signal.
+				// Don't continue this loop.
 				return;
 			}
-			setTimeout(() => mainloop(thisGameNumber), timeoutLength);
+			if(animate){
+				setTimeout(() => mainloop(thisGameNumber), timeoutLength);
+			} else {
+				mainloop(thisGameNumber);
+			}
 		} else {
-			console.log("done with game " + thisGameNumber + "!");
+			if(52-numClicks == 0) {
+				numVictories++;
+			} else{
+				numLosses++;
+			}
+			if(endfunction){
+				endfunction();
+			}
+			gameIsRunning = false;
 		}
 	}
 
 	mainloop(currGameNumber);
+}
+
+/** resultsDivs will be passed to updateResultsDivs if it is not null */
+function setupAndStartMultiAutoGame(numtimes, animate=true, resultsDivs=null){
+	setupGame();
+	startAutoGame(function(){
+		// first update any graphs
+		if(resultsDivs){
+			updateResultsDivs(resultsDivs);
+		}
+
+		// then loop
+		if(numtimes > 1) {
+			setTimeout(
+				() => setupAndStartMultiAutoGame(numtimes-1, animate, resultsDivs),
+				timeoutLength
+			);
+		}
+	}, animate);
+}
+
+/** resultsDiv is an object of (k,v) pairs where v is the div to output results in.
+  * valid keys are "numVictories", "numLosses", "numGames", and "victoryRatio" */
+function updateResultsDivs(resultsDivs){
+	let currDiv;
+
+
+	currDiv = resultsDivs["numVictories"];
+	if(currDiv) {
+		currDiv.textContent = numVictories;
+	}
+	
+	currDiv = resultsDivs["numLosses"];
+	if(currDiv) {
+		currDiv.textContent = numLosses;
+	}
+	
+	currDiv = resultsDivs["numGames"];
+	if(currDiv) {
+		currDiv.textContent = (numVictories + numLosses);
+	}
+	
+	currDiv = resultsDivs["victoryRatio"];
+	if(currDiv) {
+		currDiv.textContent = (numVictories * 100/(numVictories + numLosses)).toFixed(2);
+	}
 }

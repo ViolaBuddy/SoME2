@@ -1,0 +1,118 @@
+body {
+	background-color: #542f19;
+}
+
+strong {
+	text-decoration: underline;
+}
+
+.gameiframe {
+	display: block;
+	margin: auto;
+	border: 1px solid gray;
+	position: relative;
+}
+
+#basicgame, #autogame {
+	width: 600px;
+	height: 600px;
+}
+
+#victorypercentagegame {
+	width: 900px;
+	height: 600px;
+}
+
+h1 {
+	font-variant: small-caps;
+	font-size: 3em;
+	text-align: center;
+	color: #ffffff;
+
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 8px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+
+	border: 8px solid #221105;
+	border-radius: 8px;
+	background-color: #743f39;
+	box-sizing: border-box;
+}
+
+h2 {
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0px;
+	border-radius: 8px;
+	padding-left: 120px;
+	padding-top:20px;
+	padding-bottom:20px;
+
+	font-family: sans-serif;
+	font-size: 2em;
+	color: #ffffff;
+	background-color: #221105;
+
+	box-sizing: border-box;
+}
+
+div.content {
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 24pt;
+	margin-bottom: 24pt;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-left: 24pt;
+	padding-right: 24pt;
+
+	border: 8px solid #221105;
+	border-radius: 8px;
+	background-color: #ffeecc;
+	box-sizing: border-box;
+}
+
+div.content :not(h2, figcaption) {
+	font-size: 16pt;
+	line-height: 24pt;
+	font-family: sans-serif;
+	text-align: justify;
+
+}
+
+summary {
+	cursor: pointer;
+}
+
+.floatright{
+	float: right;
+}
+
+figure {
+	width: 450px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-left: 8pt;
+	padding-right: 8pt;
+	margin-top: 1em;
+	margin-bottom: 0;
+
+	border: 1px solid #221105;
+	border-radius: 8px;
+	box-sizing: border-box;
+}
+
+figure>img {
+	margin:auto;
+	display: block;
+}
+
+figcaption{
+	font-size: 14pt;
+	text-align: justify;
+}

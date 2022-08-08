@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Basic Clock Solitaire (Auto)</title>
+	<title>Clock Solitaire (Auto)</title>
 	<link rel="stylesheet" type="text/css" href="basicgame.css">
-	<link rel="stylesheet" type="text/css" href="cardgamestyle.css">
 	<script type="text/javascript" src="PlayingCards.js"></script>
 	<script type="text/javascript" src="basicgame.js"></script>
 </head>
@@ -31,6 +30,8 @@
 	document.getElementById('autospeedrange').oninput = function(clickevent){
 		timeoutLength = 1000 / document.getElementById('autospeedrange').value;
 	}
+	// then run it once at the beginning, just to be sure - refreshing the page does weird things sometimes
+	document.getElementById('autospeedrange').oninput();
 </script>
 </body>
 </html>

@@ -1,3 +1,19 @@
+div.playing-card {
+	position: absolute;
+	transition: top 0.5s, left 0.5s;
+	width: 10%;
+}
+
+div.playing-card img {
+	width: 100%;
+}
+
+body {
+	background-color: #ffffff;
+	padding: 0px;
+	margin: 0px;
+}
+
 #alertOverlay {
 	border-radius: 15px;
 	margin: 5px;
@@ -6,15 +22,15 @@
 
 	/*https://stackoverflow.com/questions/35990304/how-to-position-overlay-fixed-div-to-the-center-with-css*/
 	position:fixed;
-	top:50%;
+	top:300px;
 	left:50%;
 	transform:translate(-50%, -50%);
 	z-index: 10000;
 	border: 3px solid #743f39;
 
-	width:80vw;
-	height:20vh;
-	font-size:8vh;
+	width:480px;
+	height:120px;
+	font-size:48px;
 	background-color: #ffeecc;
 	
 	display: flex;
@@ -30,5 +46,35 @@
 }
 
 #autospeedrange{
-	width: 25vw;
+	width: 150px;
+}
+
+#wrapper{
+	position: relative;
+	margin: auto;
+}
+
+#main{
+	position: absolute;
+	width: 600px;
+	height: 600px;
+	box-sizing: border-box;
+}
+
+#graphs{
+	position: absolute;
+	width: 300px;
+	height: 600px;
+	left: 600px;
+	background-color: #E6CFB8;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+#againbuttonslist {
+	list-style-type: none; /* Remove bullets */
+}
+
+#againbuttonslist button {
+	width: 200px;
 }
