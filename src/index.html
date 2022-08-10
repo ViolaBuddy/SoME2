@@ -14,7 +14,7 @@
 		<summary>Rules (click to reveal)</summary>
 		<p><strong>Setup:</strong> Arrange your cards in twelve piles of four in a circle, like the twelve numbers on a clock face. Put the final pile of four in the center; this represents the clock striking 13.</p>
 		<p><strong>Gameplay:</strong> A move in this game consists of taking a card from a pile on the clock and putting it face-up in the waste pile. Your first move is from the central 13 o'clock pile.</p>
-		<p>After that, each subsequent move is from the pile indicated by the value of the card you just flipped over in the waste pile in the previous move. For example, if the first card is a Two, your next move would be from the pile in the 2 o'clock position. Aces are 1 o'clock, Jacks are 11 o'clock, Queens are 12 o'clock, and Kings are the 13 o'clock pile in the center.</p>
+		<p>After that, each subsequent move is from the pile indicated by the value of the card that you just placed in the waste pile in the previous move. For example, if the first card is a Two, your next move would be from the pile in the 2 o'clock position. Aces are 1 o'clock, Jacks are 11 o'clock, Queens are 12 o'clock, and Kings are the 13 o'clock pile in the center.</p>
 		<p>In this digital version, to make a move, click on a facedown card in the right pile to move it to the waste.</p>
 		<p><strong>Victory and loss conditions:</strong> Your goal is to move all the cards into the waste pile&mdash;but if a card points you to a pile that's already empty, that's game over!</p>
 	</details>
@@ -27,13 +27,13 @@
 <div class="content">
 	<h2>Great, So What Math-y Things Are We Talking About?</h2>
 	<p>Before we start asking questions about the game, it'd be good to just play it a few times to make observations about it. But you're probably getting tired of hunting and clicking.</p>
-	<p>But fortunately, as I said, this game involves absolutely no choice whatsoever. There is only one card you can flip over at any point in time. That means it's easy to automate! So if you're tired of clicking, try this one:</p>
+	<p>But fortunately, as I said, this game involves absolutely no choice whatsoever. That means it's easy to automate! So if you're tired of clicking, try this one:</p>
 	<iframe src="autogame.html" title="Clock Solitaire (Auto)" id="autogame" class="gameiframe"></iframe> 
 
 	<p>There are a couple things that jump out after playing through a couple of games, at least for me:</p>
 	<ol>
 		<li>When we get stuck, it always seems to be because of a King pointing at an empty 13 o'clock pile, never any of the other piles.</li>
-		<li>It's actually very unlikely to win. In the vast majority of cases, you'll get stuck somewhere or other. Depending on your luck, maybe you haven't even seen a winning game at all.</li>
+		<li>It's unlikely to win. In the vast majority of cases, you'll get stuck at some point before clearing the clock face. Depending on your luck, maybe you haven't even seen a winning game at all.</li>
 	</ol>
 	<p>So these directly lead to the two questions I'm going to explore here: (1) Why is it always the Kings that give us trouble?, and (2) What's the probability of winning?</p>
 	<p>Perhaps other questions come to mind for you. I'd certainly encourage you to continue thinking about them after you read through the rest of this, but for now, let's look at these two questions.</p>
@@ -57,7 +57,7 @@
 		<summary>Answer (click to reveal)</summary>
 		Add an additional 14 o'clock pile in your setup (maybe next to the 13 o'clock pile in the center of the clockface), with only two cards in it. The first move could be from the 13 o'clock pile or the 14 o'clock pile; it doesn't really matter. But everything else works identically.
 	</details>
-	<p>Even though this proof is fairly simple and straightforward, this fact is not obvious until you go through this, at least for me. I mean, once you play at least a game or two and see that it's a King in those games, you would have suspicions that it would always end with a King. But it's still not really obvious <em>why</em> until you actually go through a proof like this.</p>
+	<p>Even though this proof is fairly simple and straightforward, this fact is not obvious until you go through this, at least for me. I mean, once you play at least a game or two and see that it's a King in those games, you would start to suspect that it would always end with a King, experimentally. But it's still not really obvious <em>why</em> until you actually go through a proof like this.</p>
 </div>
 
 <div class="content">
@@ -70,11 +70,17 @@
 	<p>Take a moment to think about this argument for a moment. If you're like me, there is one part of this argument that still feels a bit handwavy. Are we sure that the last card we see is actually a randomly shuffled card? After all, we're doing all this back and forth clock manœuvering; maybe this changes the probability of the last card we're going to see. That's how the Monty Hall Problem works.</p>
 	<p>We can solve this in two ways. The proper way is to do some further arguments and logic. But the other, more fun way is to just simulate it and see if the results match our predictions. And I've subjected you to enough paragraphs of plain text, so let's go down the simulation route.</p>
 	<iframe src="victorypercentagegame.html" title="Clock Solitaire, with percentage" id="victorypercentagegame" class="gameiframe"></iframe>
-	<p>Okay, great, we have an experimental number. But, uh&hellip; so now what? Did we prove this right or wrong? This is a simulation, so I have no idea what number you have. It's probably close. Or it might not be. How do we tell?</p>
+	<p>Okay, great, we have an experimental number. But, uh&hellip; so now what? Did we prove this right or wrong? This is a simulation, so I have no idea what number you have. It's probably close to 7.7%. Or it might not be. It depends on how we define "close." Umm&hellip; how <em>do</em> we define "close"?</p>
 </div>
 
 <div class="content">
-	<h2>Experimental Rates</h2>
+	<h2>Horseshoes and Hand Grenades&mdash;and Experiments</h2>
+	<p>Let's try to pinpoint what kinds of things we're looking for in our definition of "close." Our goal is to figure out whether or not our experimental value matches our predicted value of 7.7%. But of course, we can't just say "are the numbers equal to each other exactly?" because we're always going expect a little bit of variance, which is why we're allowing ourselves some leeway. So we might say that if our experimental rate is between 6.7% and 8.7%, we might call that "close enough." That's the kind of thing we're looking for, a range around 7.7% that our experimental results "should" be close to.</p>
+	<p>But I think that might actually be looking at thing the wrong way around. We don't trust our logic that got us to 7.7%, right? That was why we were doing this experimentally in the first place. But our experiment was something that we know actually happened&mdash;we may have been unlucky or unlucky, but it is a true statement that, for example, just now, I got 44 victories out of 500 total simulations, for a win rate of 8.8%, regardless of any theory underlying this. So I would say it would make more sense to frame it as "there should be some range around 8.8% that the true probability should be in."</p>
+	<p>Take a moment to compare the last sentences of the previous two paragraphs, and make sure you understand all the pieces. In the first case, there is the calculated win rate, and our experimental win rate. There are three different win rates we're considering: the 7.7% win rate that we calculated without doing any experiments but we're not entirely confident about, the 8.8% measured win rate, and the true win rate TODO.</p>
+	<p>So if our range is not dependent on our calculated value, then what <em>is</em> it dependent on? Just speaking intuitively, we would certainly trust the victory rate taken from a million samples more than we would trust a rate taken from ten samples. The range should be narrower with more samples. But how much narrower?</p>
+	<p>The thing is, no matter how many samples we take, TODO</p>
+	<p>So now we have all the pieces to just appeal to past math results. People have asked this question before, of course.</p>
 </div>
 
 <div class="content">
@@ -87,7 +93,7 @@
 	</ul>
 </div>
 
-<hr/>
+<hr>
 <h1>Acknowledgements</h1>
 <div class="content">
 	<p>This explorable was created in HTML/Javascript by Viola Buddy for the Summer of Math Exposition 2 (SoME2), an event organized by the YouTube channel 3Blue1Brown to encourage people to create explanations of math or math-related subjects in any online medium. Public domain playing card vector images by Byron Knoll (card backs are by Viola Buddy).</p>

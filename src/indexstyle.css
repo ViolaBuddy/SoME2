@@ -89,7 +89,7 @@ summary {
 	cursor: pointer;
 }
 
-.floatright{
+.floatright {
 	float: right;
 }
 
@@ -112,7 +112,11 @@ figure>img {
 	display: block;
 }
 
-figcaption{
+figcaption {
 	font-size: 14pt;
 	text-align: justify;
+}
+
+hr {
+	border-top: 1px solid red;
 }
