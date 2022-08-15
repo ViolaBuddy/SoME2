@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clock Solitaire (Victory Percentage)</title>
+	<link rel="stylesheet" type="text/css" href="basicgame.css">
+	<script type="text/javascript" src="PlayingCards.js"></script>
+	<script type="text/javascript" src="basicgame.js"></script>
+</head>
+<body>
+<div id="wrapper">
+	<div id="main">
+		<div id="allstatslist">
+			<p>Victories: <span id="stats_victories">0</span>/<span id="stats_total">0</span></p>
+			<p>Win rate: <span id="stats_rate">&mdash;</span> &plusmn; <span id="stats_errorbounds">&mdash;</span>%</p>
+			<p>(We're at least <span id="stats_confidence">&mdash;</span>% sure)</p>
+		</div>
+	</div>
+	<div id="graphs">
+		Run a series of simulations!<br>
+		<form id="control_panel">
+			<p>Hoeffding bounds: you get to choose two parameters; the third is automatically calculated from the other two.</p>
+			<input type="radio" id="output_n" value="output_n" name="hoeffding_variables"><label for="output_n">Choose P and t (calculate n)</label> <br>
+			<input type="radio" id="output_P" value="output_P" name="hoeffding_variables"><label for="output_P">Choose n and t (calculate P)</label> <br>
+			<input type="radio" id="output_t" value="output_t" name="hoeffding_variables" checked="checked"><label for="output_t">Choose n and P (calculate t)</label>
+
+			<br>
+			<br>
+			<label for="n">Number of simulations (n)</label><br>
+			<input type="number" id="n" name="n" value="500"><br>
+			<label for="P">Acceptable error rate (P)</label><br>
+			<input type="number" id="P" name="P" value="0.01" min="0" max="1" step="0.001"><br>
+			<label for="t">Error bound size (t)</label><br>
+			<input type="number" id="t" name="t" value="0.01" min="0" max="1" step="0.001"><br>
+			<button type="button" id="gobutton">Run n simulations</button>
+			<button type="button" id="stopbutton">Stop simulations</button>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+	setupGame(false);
+	timeoutLength = 0;
+	let resultsDivs = {
+		"numVictories": document.getElementById("stats_victories"),
+		"numGames": document.getElementById("stats_total"),
+		"victoryRatio": document.getElementById("stats_rate"),
+		"confidence": {
+			"divP": document.getElementById("stats_confidence"),
+			"divt": document.getElementById("stats_errorbounds"),
+			"P": undefined,
+			"t": undefined
+		}
+	};
+
+	let Pnt_state = {"P": 0, "n": 0, "t": 0};
+	/* get P, n, or t value from the HTML input, and then if it's not NaN,
+	 * assign its value to Pnt_state */
+	function tryStoreState(identifier){
+		let temp = parseFloat(document.getElementById(identifier).value);
+		if(!isNaN(temp)){
+			Pnt_state[identifier] = temp;
+		}
+	}
+	/* get the P, n, or t value from the Pnt_state variable
+	 * and update the corresponding HTML input element */
+	function tryDisplayState(identifier){
+		document.getElementById(identifier).value = Pnt_state[identifier];
+	}
+
+	function updateOutput(event){
+		let state = document.querySelector('input[name="hoeffding_variables"]:checked').value;
+
+		switch(state){
+			case "output_n":
+				tryStoreState('P');
+				tryStoreState('t');
+				Pnt_state['n'] = Math.ceil(n_from_P_t(Pnt_state['P'],Pnt_state['t']));
+				tryDisplayState('n');
+				document.getElementById('P').disabled = false;
+				document.getElementById('t').disabled = false;
+				document.getElementById('n').disabled = true;
+				break;
+			case "output_P":
+				tryStoreState('n');
+				tryStoreState('t');
+				Pnt_state['P'] = P_from_n_t(Pnt_state['n'],Pnt_state['t']);
+				tryDisplayState('P');
+				document.getElementById('n').disabled = false;
+				document.getElementById('t').disabled = false;
+				document.getElementById('P').disabled = true;
+				break;
+			case "output_t":
+				tryStoreState('n');
+				tryStoreState('P');
+				Pnt_state['t'] = t_from_n_P(Pnt_state['n'],Pnt_state['P']);
+				tryDisplayState('t');
+				document.getElementById('n').disabled = false;
+				document.getElementById('P').disabled = false;
+				document.getElementById('t').disabled = true;
+				break;
+		}
+	}
+
+	updateOutput();
+	document.getElementById('control_panel').oninput = updateOutput;
+
+	document.getElementById('gobutton').onclick = function(clickevent){
+		if(!gameIsRunning) {
+			let realTimeoutLength = timeoutLength;
+			if(gameSeriesIsRunning) {
+				// oh we need to tell the previous one to stop
+				gameSeriesIsRunning = false;
+				realTimeoutLength = 100;
+			}
+			setTimeout(function(){
+				// reset stats first
+				currGameNumber = -1;
+				numVictories = 0;
+				numLosses = 0;
+				gameSeriesIsRunning = true;
+				let n = Math.ceil(Pnt_state["n"]);
+				let state = document.querySelector('input[name="hoeffding_variables"]:checked').value;
+				if(state==="output_P"){
+					resultsDivs["confidence"]["P"] = undefined;
+					resultsDivs["confidence"]["t"] = Pnt_state["t"];
+				} else {
+					resultsDivs["confidence"]["P"] = Pnt_state["P"];
+					resultsDivs["confidence"]["t"] = undefined;
+				}
+
+				setupAndStartMultiAutoGame(n, false, resultsDivs, false);
+			}, realTimeoutLength);
+		}
+	}
+	document.getElementById('stopbutton').onclick = function(clickevent){
+		gameSeriesIsRunning = false;
+	}
+</script>
+</body>
+</html>

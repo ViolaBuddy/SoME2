@@ -78,3 +78,27 @@ body {
 #againbuttonslist button {
 	width: 200px;
 }
+
+#gobutton, #stopbutton {
+	width: 200px;
+	display: block;
+	margin:auto;
+}
+
+form input[type="number"] {
+	width: 100%;
+	display:block;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+#allstatslist {
+	/*https://stackoverflow.com/questions/35990304/how-to-position-overlay-fixed-div-to-the-center-with-css*/
+	position:absolute;
+	width:100%;
+
+	top:50%;
+	transform:translate(0, -50%);
+	font-size: 32px;
+	text-align: center;
+}

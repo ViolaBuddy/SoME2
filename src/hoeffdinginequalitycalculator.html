@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hoeffding's Inequality</title>
+	<link rel="stylesheet" type="text/css" href="calculator.css">
+</head>
+<body>
+<div class="calculator">
+	<form id="calculate_t">
+		<label for="n">Number of simulations (n)</label>
+		<input type="number" id="n" name="n" value="500">
+		<label for="P">Acceptable error rate (P)</label>
+		<input type="number" id="P" name="P" value="0.01" min="0" max="1" step="0.001">
+		<hr>
+		<label for="t">Error bound size (t)</label>
+		<output name="t" id="t" for="n P"></output>
+	</form>
+</div>
+<script type="text/javascript">
+	function updateOutput(event){
+		let n = parseFloat(document.getElementById('n').value);
+		let P = parseFloat(document.getElementById('P').value);
+		let t = Math.sqrt(-Math.log(P/2) / (2*n));
+		if(!isNaN(t)){
+			document.getElementById('t').value = t;
+		}
+	}
+	updateOutput();
+	document.getElementById('calculate_t').oninput = updateOutput;
+</script>
+</body>
+</html>

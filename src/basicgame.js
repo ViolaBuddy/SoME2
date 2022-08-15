@@ -12,9 +12,10 @@ var fullDeck = createDeck();
 var currGameNumber = -1;
 var numVictories = 0;
 var numLosses = 0;
-var gameIsRunning = false;
+var gameIsRunning = false; // whether or not a single game is running
+var gameSeriesIsRunning = false; // whether or not a game series is running
 
-function setupGame() {
+function setupGame(doAddImage=true) {
 	fullDeck.shuffle();
 	numClicks = 0;
 	lastClickedNumericalRank = 0;
@@ -24,7 +25,9 @@ function setupGame() {
 	for (let i = 0; i < fullDeck.cards.length; i++) {
 		// create the card image
 		let card = fullDeck.cards[i];
-		card.addImageTo(document.getElementById('main'));
+		if(doAddImage){
+			card.addImageTo(document.getElementById('main'));
+		}
 		card.flip(false); // face down
 
 		// arrange the DOM element visually on the page
@@ -116,9 +119,12 @@ function startAutoGame(endfunction=null, animate=true){
 		}
 		if(tryMove){
 			// if we could successfully find a card to move
-			if(currGameNumber > thisGameNumber){
-				// Oh wait, our game has already ended through an external signal.
+			if(currGameNumber > thisGameNumber || !gameSeriesIsRunning){
+				// Oh wait, our game series has ended or an external signal told us to stop
 				// Don't continue this loop.
+				gameIsRunning = false;
+				gameSeriesIsRunning = false;
+				console.log("finish");
 				return;
 			}
 			if(animate){
@@ -143,8 +149,8 @@ function startAutoGame(endfunction=null, animate=true){
 }
 
 /** resultsDivs will be passed to updateResultsDivs if it is not null */
-function setupAndStartMultiAutoGame(numtimes, animate=true, resultsDivs=null){
-	setupGame();
+function setupAndStartMultiAutoGame(numtimes, animate=true, resultsDivs=null, doAddImage=true){
+	setupGame(doAddImage);
 	startAutoGame(function(){
 		// first update any graphs
 		if(resultsDivs){
@@ -154,36 +160,61 @@ function setupAndStartMultiAutoGame(numtimes, animate=true, resultsDivs=null){
 		// then loop
 		if(numtimes > 1) {
 			setTimeout(
-				() => setupAndStartMultiAutoGame(numtimes-1, animate, resultsDivs),
+				() => setupAndStartMultiAutoGame(numtimes-1, animate, resultsDivs, doAddImage),
 				timeoutLength
 			);
+		} else {
+			gameSeriesIsRunning = false;
 		}
 	}, animate);
 }
 
-/** resultsDiv is an object of (k,v) pairs where v is the div to output results in.
-  * valid keys are "numVictories", "numLosses", "numGames", and "victoryRatio" */
+/** resultsDiv is an object of (k,v) pairs where v is the div (or span) to output results in.
+  * valid keys are "numVictories", "numLosses", "numGames", and "victoryRatio".
+  * 
+  * an exception: the key "confidence" points to another object that must contain:
+  *   (1) "divP": the div or span, as above, for displaying P
+  *   (2) "divt": the div or span, as above, for displaying t
+  *   (3) EITHER "P": the confidence level we want OR "t": the error bounds we want
+  *       (the other should be undefined)
+  */
 function updateResultsDivs(resultsDivs){
 	let currDiv;
-
 
 	currDiv = resultsDivs["numVictories"];
 	if(currDiv) {
 		currDiv.textContent = numVictories;
 	}
-	
 	currDiv = resultsDivs["numLosses"];
 	if(currDiv) {
 		currDiv.textContent = numLosses;
 	}
-	
 	currDiv = resultsDivs["numGames"];
 	if(currDiv) {
 		currDiv.textContent = (numVictories + numLosses);
 	}
-	
 	currDiv = resultsDivs["victoryRatio"];
 	if(currDiv) {
 		currDiv.textContent = (numVictories * 100/(numVictories + numLosses)).toFixed(2);
 	}
+	// special case: "confidence"
+	if(resultsDivs["confidence"]) {
+		let P = resultsDivs["confidence"]["P"];
+		let t = resultsDivs["confidence"]["t"];
+		let n = numVictories + numLosses;
+		let divP = resultsDivs["confidence"]["divP"];
+		let divt = resultsDivs["confidence"]["divt"];
+		if(P === undefined) {
+			P = P_from_n_t(n, t);
+		} else if (t === undefined) {
+			t = t_from_n_P(n, P);
+		}
+		divP.textContent = (100 - P * 100).toFixed(2);
+		divt.textContent = (t * 100).toFixed(2);
+	}
 }
+
+// the three Hoeffdinger Inequality functions
+let P_from_n_t = (n, t) => 2*Math.exp(-2*n*t*t);
+let n_from_P_t = (P, t) => -Math.log(P/2) / (2*t*t);
+let t_from_n_P = (n, P) => Math.sqrt(-Math.log(P/2) / (2*n));

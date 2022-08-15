@@ -1,0 +1,40 @@
+body {
+	background-color: #ffffff;
+	padding: 0px;
+	margin: 0px;
+}
+
+.calculator {
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+form {
+	float:left;
+}
+
+form label {
+	font-size: 24px;
+	text-align: center;
+	width: 100%;
+	display:inline-block;
+	font-family: "Computer Modern", serif;
+}
+form input, form output {
+	font-size: 24px;
+	width: 100%;
+	display:block;
+	box-sizing: border-box;
+	border: 1px solid black;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	font-family: sans-serif;
+}
+form hr {
+	margin-top: 12px;
+	margin-bottom: 12px;
+	border: 1px solid #cccccc;
+}

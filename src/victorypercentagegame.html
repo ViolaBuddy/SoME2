@@ -39,20 +39,28 @@
 		document.getElementById('alertOverlay').style['display'] = 'none';
 
 		document.getElementById('againbutton').onclick = function(clickevent){
-			if(!gameIsRunning)
+			if(!gameSeriesIsRunning){
+				gameSeriesIsRunning = true;
 				setupAndStartMultiAutoGame(1, true, resultsDivs);
+			}
 		}
 		document.getElementById('again5button').onclick = function(clickevent){
-			if(!gameIsRunning)
+			if(!gameSeriesIsRunning){
+				gameSeriesIsRunning = true;
 				setupAndStartMultiAutoGame(5, true, resultsDivs);
+			}
 		}
 		document.getElementById('again20button').onclick = function(clickevent){
-			if(!gameIsRunning)
+			if(!gameSeriesIsRunning){
+				gameSeriesIsRunning = true;
 				setupAndStartMultiAutoGame(20, false, resultsDivs);
+			}
 		}
 		document.getElementById('again100button').onclick = function(clickevent){
-			if(!gameIsRunning)
+			if(!gameSeriesIsRunning){
+				gameSeriesIsRunning = true;
 				setupAndStartMultiAutoGame(100, false, resultsDivs);
+			}
 		}
 	}
 
