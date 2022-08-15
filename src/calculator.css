@@ -8,12 +8,15 @@ body {
 	position: absolute;
 	width: 300px;
 	height: 300px;
-	padding: 20px;
+	padding: 10px;
 	box-sizing: border-box;
 }
 
 form {
 	float:left;
+	width: 280px;
+	height: 280px;
+	margin-top:10px;
 }
 
 form label {
