@@ -18,13 +18,19 @@
 <script type="text/javascript">
 	setupGame();
 	document.getElementById('alertOverlay').onclick = function(clickevent){
+		gameSeriesIsRunning = true;
 		startAutoGame();
 		document.getElementById('alertOverlay').style['display'] = 'none';
 
 		document.getElementById('againbutton').onclick = function(clickevent){
+			if(gameIsRunning){
+				// don't interrupt if it's already running
+				return;
+			}
 			setupGame();
-			// start after a very small delay
-			setTimeout(() => startAutoGame(), 10);
+			gameSeriesIsRunning = true;
+			// delay slightly, so that css properties get a chance to be set
+			setTimeout(startAutoGame, 10);
 		}
 	}
 	document.getElementById('autospeedrange').oninput = function(clickevent){
