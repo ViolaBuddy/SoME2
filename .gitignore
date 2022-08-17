@@ -1,2 +1,3 @@
 builds
-src/temp
+temp
+*.zip
